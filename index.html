@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PostgreSQL DBA Hub</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>PostgreSQL DBA Hub</h1>
+    <p>DBA activities, troubleshooting, scripts, performance tuning, and PostgreSQL development notes.</p>
+  </header>
+
+  <nav>
+    <a href="#posts">Posts</a>
+    <a href="#scripts">Scripts</a>
+    <a href="#about">About</a>
+  </nav>
+
+  <main>
+    <section id="posts">
+      <h2>Latest PostgreSQL Posts</h2>
+
+      <article>
+        <h3>PostgreSQL Backup and Restore Basics</h3>
+        <p>
+          PostgreSQL supports SQL dumps, file system backups, and continuous archiving/PITR.
+        </p>
+        <pre><code>pg_dump -U postgres -d mydb -F c -f mydb.backup
+pg_restore -U postgres -d mydb mydb.backup</code></pre>
+      </article>
+
+      <article>
+        <h3>VACUUM and ANALYZE</h3>
+        <p>
+          VACUUM helps clean dead tuples, while ANALYZE updates planner statistics.
+        </p>
+        <pre><code>VACUUM ANALYZE;</code></pre>
+      </article>
+
+      <article>
+        <h3>Check Active Connections</h3>
+        <pre><code>SELECT pid, usename, datname, state, query
+FROM pg_stat_activity
+ORDER BY query_start DESC;</code></pre>
+      </article>
+    </section>
+
+    <section id="scripts">
+      <h2>Useful DBA Scripts</h2>
+
+      <h3>Database Size</h3>
+      <pre><code>SELECT datname, pg_size_pretty(pg_database_size(datname)) AS size
+FROM pg_database
+ORDER BY pg_database_size(datname) DESC;</code></pre>
+
+      <h3>Table Size</h3>
+      <pre><code>SELECT relname AS table_name,
+       pg_size_pretty(pg_total_relation_size(relid)) AS total_size
+FROM pg_catalog.pg_statio_user_tables
+ORDER BY pg_total_relation_size(relid) DESC;</code></pre>
+    </section>
+
+    <section id="about">
+      <h2>About</h2>
+      <p>
+        This website shares practical PostgreSQL DBA activities, development notes,
+        backup commands, monitoring queries, tuning tips, and troubleshooting guides.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 PostgreSQL DBA Hub</p>
+  </footer>
+</body>
+</html>
