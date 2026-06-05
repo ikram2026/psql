@@ -21,28 +21,7 @@
   <main>
     <section id="posts">
       <h2>Latest PostgreSQL Posts</h2>
-      <input
-  type="text"
-  id="searchBox"
-  placeholder="Search articles..."
-  onkeyup="searchPosts()">
-      <script>
-function searchPosts() {
-  let input = document.getElementById("searchBox");
-  let filter = input.value.toLowerCase();
 
-  let posts = document.getElementsByClassName("post");
-
-  for (let i = 0; i < posts.length; i++) {
-    let text = posts[i].innerText.toLowerCase();
-
-    if (text.indexOf(filter) > -1)
-      posts[i].style.display = "";
-    else
-      posts[i].style.display = "none";
-  }
-}
-</script>
       <article>
         <h3>PostgreSQL Backup and Restore Basics</h3>
         <p>
